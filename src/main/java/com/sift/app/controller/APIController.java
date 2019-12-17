@@ -21,7 +21,7 @@ private static Logger LOG=Logger.getLogger(APIController.class.getName());
 	public String getMarketData()
 	{
 		LOG.info("Calling Get getMarketData");
-		final String uri = "https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/get-summary?region=India&lang=en";
+		final String uri = "https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/get-summary?region=IN&lang=en";
 	    RestTemplate restTemplate = new RestTemplate();
 	    HttpHeaders headers = new HttpHeaders();
 	    headers.add("content-type","application/json");
