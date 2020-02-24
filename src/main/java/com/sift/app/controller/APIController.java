@@ -1,21 +1,31 @@
 package com.sift.app.controller;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.sift.app.dto.StockLeaderDTO;
+import com.sift.app.service.StockLeaderService;
 
+
+@RequestMapping(value="/api") 
 @RestController
 public class APIController {
 
 private static Logger LOG=Logger.getLogger(APIController.class.getName());
 	
-	
+	@Autowired
+	private StockLeaderService stockLeaderService;
 	
 	@GetMapping("/marketData")
 	public String getMarketData()
@@ -33,4 +43,11 @@ private static Logger LOG=Logger.getLogger(APIController.class.getName());
 	    return response;
 	}
 	
+	@GetMapping("/stockLeader")
+	public List<StockLeaderDTO> getStockLeaders()
+	{
+		LOG.info("Calling Get getMarketData");
+		List<StockLeaderDTO> stockLeaders = stockLeaderService.getStockLeaders("LARGE");
+		return stockLeaders;
+	}
 }
